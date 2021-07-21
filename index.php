@@ -1,5 +1,5 @@
 <?php
-include_once ("dbconnect.php");
+include("dbconnect.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if ($row["usertype"] == "admin")
     {
         $_SESSION["email"] = $email;
+        $_SESSION["id"] = $id;
         header("location:admin.php");
     }
     elseif ($row["usertype"] == "user")

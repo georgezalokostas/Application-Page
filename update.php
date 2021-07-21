@@ -1,15 +1,11 @@
 <?php
 include ("dbconnect.php");
 
-if (!isset($_SESSION['email']))
-{
-    header("location:index.php");
-}
+$temp = $_GET['updateid'];
+echo $temp;
 
-$id = $_GET['updateid'];
-
-if (isset($_post['submit']))
-{
+if (isset($_POST['update']))
+{   $id        = $_GET['updateid'];
     $firstname = $_POST['firstname'];
     $lastname  = $_POST['lastname'];
     $email     = $_POST['email'];
@@ -17,13 +13,12 @@ if (isset($_post['submit']))
     $usertype  = $_POST['usertype'];
 
     $sql = " UPDATE users SET
-    id = $id,
     firstname='$firstname',
     lastname='$lastname',
     email='$email',
     password='$password',
     usertype='$usertype'
-    WHERE id=$id ";
+    WHERE id= $id ";
 
     $result = mysqli_query($data, $sql);
     if ($result)
@@ -78,7 +73,7 @@ if (isset($_post['submit']))
                 <option value="admin">admin</option>
              </select>
             </div><br>
-          <button type="submit" class="btn btn-outline-success" name="submit">Update</button>
+          <button type="submit" class="btn btn-outline-success" name="update" value="submit">Update</button>
           <a class="btn btn-outline-danger" href="admin.php" role="button">Return</a>
       </form>
 

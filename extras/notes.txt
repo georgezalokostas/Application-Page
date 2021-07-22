@@ -1,2 +1,0 @@
-db: posts
-tables: applications, users

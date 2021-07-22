@@ -5,24 +5,33 @@ if(!isset($_SESSION['email'])){
   header("location:index.php");
 }
 
+
+
 if(isset($_POST['submit'])){
 
-  $firstname = $_POST['firstname'];
-  $lastname  = $_POST['lastname'];
-  $email     = $_POST['email'];
-  $password  = $_POST['password'];
-  $usertype  = $_POST['usertype'];
+  $firstname  = $_POST['firstname'];
+  $lastname   = $_POST['lastname'];
+  $email      = $_POST['email'];
+  $password   = $_POST['password'];
+  $password2  = $_POST['password2'];
+  $usertype   = $_POST['usertype'];
 
+  if ($_POST['password']!= $_POST['password2'])
+   {
+       echo("Oops! Password did not match! Try again. ");
 
-  $sql="INSERT INTO users  (firstname,lastname,email,password,usertype) VALUES ('$firstname','$lastname','$email','$password','$usertype')";
+   }else{
+     $sql="INSERT INTO users  (firstname,lastname,email,password,usertype) VALUES ('$firstname','$lastname','$email','$password','$usertype')";
 
-  $result = mysqli_query($data,$sql);
-  if($result){
-    header("location:admin.php");
+     $result = mysqli_query($data,$sql);
+     if($result){
+       header("location:admin.php");
 
-  }else{
-      die(mysqli_error($data));
-  }
+     }else{
+         die(mysqli_error($data));
+     }
+   }
+
 }
 
 ?>
@@ -56,6 +65,11 @@ if(isset($_POST['submit'])){
             <div class="form-group">
             <label for="exampleInputEmail1">Password</label>
             <input type="text" class="form-control" placeholder="Enter password" name="password" autocomplete="off">
+            </div><br>
+
+            <div class="form-group">
+            <label for="exampleInputEmail1">Re-enter Password</label>
+            <input type="text" class="form-control" placeholder="Re-enter password" name="password2" autocomplete="off">
             </div><br>
 
             <div class="form-group">

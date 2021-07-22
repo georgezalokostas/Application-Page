@@ -1,16 +1,33 @@
 <?php
 include ("dbconnect.php");
 
-$temp = $_GET['updateid'];
-echo $temp;
+#Get id from url, and prepopulate the cells
+$id = $_GET['updateid'];
+$query = "SELECT * FROM users WHERE id=$id";
+$result = mysqli_query($data, $query);
+$row = mysqli_fetch_assoc($result);
+$firstname = $row['firstname'];
+$lastname = $row['lastname'];
+$email = $row['email'];
+$password = $row['password'];
+$usertype = $row['usertype'];
 
+#After the update button, we query the new values
 if (isset($_POST['update']))
-{   $id        = $_GET['updateid'];
+{
+
     $firstname = $_POST['firstname'];
-    $lastname  = $_POST['lastname'];
-    $email     = $_POST['email'];
-    $password  = $_POST['password'];
-    $usertype  = $_POST['usertype'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password2  = $_POST['password2'];
+    $usertype = $_POST['usertype'];
+
+    if ($_POST['password']!= $_POST['password2'])
+     {
+         echo("Oops! Password did not match! Try again. ");
+
+     }else{
 
     $sql = " UPDATE users SET
     firstname='$firstname',
@@ -23,14 +40,13 @@ if (isset($_POST['update']))
     $result = mysqli_query($data, $sql);
     if ($result)
     {
-        echo("data success");
-        #header("location:admin.php");
+        header("location:admin.php");
     }
     else
     {
         die(mysqli_error($data));
     }
-
+}
 }
 
 ?>
@@ -45,25 +61,30 @@ if (isset($_POST['update']))
 <body>
       <div class="container my-5">
           <h3> Update user</h3>
-          <form method="POST" action="update.php">
+          <form method="POST" action="update.php?updateid=<?php echo $id ?>">
             <div class="form-group">
             <label for="exampleInputEmail1">First Name</label>
-            <input type="text" class="form-control" placeholder="Enter first name" name="firstname" autocomplete="off">
+            <input type="text" class="form-control" placeholder="Enter first name" name="firstname" autocomplete="off" value=<?php echo $firstname ?>>
             </div><br>
 
             <div class="form-group">
             <label for="exampleInputEmail1">Last Name</label>
-            <input type="text" class="form-control" placeholder="Enter last name" name="lastname" autocomplete="off">
+            <input type="text" class="form-control" placeholder="Enter last name" name="lastname" autocomplete="off" value=<?php echo $lastname ?>>
             </div><br>
 
             <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
-            <input type="text" class="form-control" placeholder="Enter email" name="email" autocomplete="off">
+            <input type="text" class="form-control" placeholder="Enter email" name="email" autocomplete="off" value=<?php echo $email ?>>
             </div><br>
 
             <div class="form-group">
             <label for="exampleInputEmail1">Password</label>
             <input type="text" class="form-control" placeholder="Enter password" name="password" autocomplete="off">
+            </div><br>
+
+            <div class="form-group">
+            <label for="exampleInputEmail1">Re-enter Password</label>
+            <input type="text" class="form-control" placeholder="Re-enter password" name="password2" autocomplete="off">
             </div><br>
 
             <div class="form-group">
@@ -75,6 +96,8 @@ if (isset($_POST['update']))
             </div><br>
           <button type="submit" class="btn btn-outline-success" name="update" value="submit">Update</button>
           <a class="btn btn-outline-danger" href="admin.php" role="button">Return</a>
+
+
       </form>
 
       </div>

@@ -17,7 +17,7 @@ if (!isset($_SESSION['email']))
 
   <body>
         <ul>
-         <li><a href="create.php">Create user</a></li>
+         <li><a href="create_user.php">Create user</a></li>
          <li><a href="logout.php">Logout</a></li>
           <li><?php echo "Admin: ", $_SESSION["email"] ?></li>
         </ul>

@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     $result = mysqli_query($data, $sql);
     $row = mysqli_fetch_array($result);
-
+    if($row){
     if ($row["usertype"] == "admin")
     {
         $_SESSION["email"] = $email;
@@ -23,10 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $_SESSION["email"] = $email;
         header("location:user.php");
     }
-    else
-    {
-        echo "username or password incorrect";
-    }
+
+  }else
+  {
+      echo "Email or password incorrect";
+  }
 }
 ?>
 

@@ -42,11 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
       <div class="container my-5">
           <h3> Log-in page</h3>
           <form method="POST">
-            <label for="exampleInputEmail1">Email address</label>
+            <label>Email address</label>
             <input type="email" class="form-control" placeholder="Enter your email" name="email" autocomplete="off"><br>
 
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label>Password</label>
             <input type="password" class="form-control" placeholder="Enter your password" name="password" autocomplete="off">
           </div><br>
           <button type="submit" class="btn btn-primary">Submit</button>

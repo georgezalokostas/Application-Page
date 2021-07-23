@@ -63,27 +63,27 @@ if (isset($_POST['update']))
           <h3> Update user</h3>
           <form method="POST" action="update.php?updateid=<?php echo $id ?>">
             <div class="form-group">
-            <label for="exampleInputEmail1">First Name</label>
+            <label>First Name</label>
             <input type="text" class="form-control" placeholder="Enter first name" name="firstname" autocomplete="off" value=<?php echo $firstname ?>>
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Last Name</label>
+            <label>Last Name</label>
             <input type="text" class="form-control" placeholder="Enter last name" name="lastname" autocomplete="off" value=<?php echo $lastname ?>>
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Email</label>
+            <label>Email</label>
             <input type="text" class="form-control" placeholder="Enter email" name="email" autocomplete="off" value=<?php echo $email ?>>
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Password</label>
+            <label>Password</label>
             <input type="text" class="form-control" placeholder="Enter password" name="password" autocomplete="off">
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Re-enter Password</label>
+            <label>Re-enter Password</label>
             <input type="text" class="form-control" placeholder="Re-enter password" name="password2" autocomplete="off">
             </div><br>
 

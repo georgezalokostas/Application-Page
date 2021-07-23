@@ -41,17 +41,17 @@ if (isset($_POST['submit']))
           <h3> Choose your desired dates!</h3>
           <form method="POST" action="create_application.php">
             <div class="form-group">
-            <label for="exampleInputEmail1">Date from</label>
+            <label>Date from</label>
             <input type="date" class="form-control" placeholder="Enter first name" name="datefrom" autocomplete="off">
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Date to</label>
+            <label>Date to</label>
             <input type="date" class="form-control" placeholder="Enter last name" name="dateto" autocomplete="off">
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Reason</label><br>
+            <label>Reason</label><br>
             <textarea id="reason" name="reason" rows="4" cols="50" placeholder="Tell us a bit about the reason of applying"></textarea>
             </div><br>
 

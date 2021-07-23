@@ -51,27 +51,27 @@ if(isset($_POST['submit'])){
           <h3> Create new user</h3>
           <form method="POST" action="create_user.php">
             <div class="form-group">
-            <label for="exampleInputEmail1">First Name</label>
+            <label>First Name</label>
             <input type="text" class="form-control" placeholder="Enter first name" name="firstname" autocomplete="off">
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Last Name</label>
+            <label>Last Name</label>
             <input type="text" class="form-control" placeholder="Enter last name" name="lastname" autocomplete="off">
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Email</label>
+            <label>Email</label>
             <input type="text" class="form-control" placeholder="Enter email" name="email" autocomplete="off">
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Password</label>
+            <label>Password</label>
             <input type="text" class="form-control" placeholder="Enter password" name="password" autocomplete="off">
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Re-enter Password</label>
+            <label>Re-enter Password</label>
             <input type="text" class="form-control" placeholder="Re-enter password" name="password2" autocomplete="off">
             </div><br>
 

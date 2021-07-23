@@ -7,6 +7,9 @@ if(!isset($_SESSION['email'])){
 
 
 
+
+
+
 if(isset($_POST['submit'])){
 
   $firstname  = $_POST['firstname'];

@@ -1,39 +1,32 @@
 <?php
-include("dbconnect.php");
+include ("dbconnect.php");
+include ("functions.php");
 
-if(!isset($_SESSION['email'])){
-  header("location:index.php");
+if (!isset($_SESSION['email']))
+{
+    header("location:index.php");
 }
 
+if (isset($_POST['submit']))
+{   #Format to Y-m-d, that's the format in the database!
+    $datefrom = date('Y-m-d', strtotime($_POST['datefrom']));
+    $dateto = date('Y-m-d', strtotime($_POST['dateto']));
+    $datesubmitted = date('Y-m-d');
+    $reason = $_POST['reason'];
+    $email = $_SESSION['email'];
 
-
-if(isset($_POST['submit'])){
-
-  $firstname  = $_POST['firstname'];
-  $lastname   = $_POST['lastname'];
-  $email      = $_POST['email'];
-  $password   = $_POST['password'];
-  $password2  = $_POST['password2'];
-  $usertype   = $_POST['usertype'];
-
-  if ($_POST['password']!= $_POST['password2'])
-   {
-       echo("Oops! Password did not match! Try again. ");
-
-   }else{
-     $sql="INSERT INTO users  (firstname,lastname,email,password,usertype) VALUES ('$firstname','$lastname','$email','$password','$usertype')";
-
-     $result = mysqli_query($data,$sql);
-     if($result){
-       header("location:admin.php");
-
-     }else{
-         die(mysqli_error($data));
-     }
-   }
-
+    $sql = "INSERT INTO applications  (email,datesubmitted,vacationstart,vacationend,reason) VALUES ('$email','$datesubmitted','$datefrom','$dateto','$reason')";
+    $result = mysqli_query($data, $sql);
+    if ($result)
+    {
+        sendEmail($email,$datefrom,$dateto,$reason);
+        #header("location:user.php");
+    }
+    else
+    {
+        die(mysqli_error($data));
+    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -49,17 +42,17 @@ if(isset($_POST['submit'])){
           <form method="POST" action="create_application.php">
             <div class="form-group">
             <label for="exampleInputEmail1">Date from</label>
-            <input type="date" class="form-control" placeholder="Enter first name" name="firstname" autocomplete="off">
+            <input type="date" class="form-control" placeholder="Enter first name" name="datefrom" autocomplete="off">
             </div><br>
 
             <div class="form-group">
             <label for="exampleInputEmail1">Date to</label>
-            <input type="date" class="form-control" placeholder="Enter last name" name="lastname" autocomplete="off">
+            <input type="date" class="form-control" placeholder="Enter last name" name="dateto" autocomplete="off">
             </div><br>
 
             <div class="form-group">
-            <label for="exampleInputEmail1">Reason</label>
-            <input type="text" class="form-control" placeholder="Tell us a bit about your request" name="reason" autocomplete="off">
+            <label for="exampleInputEmail1">Reason</label><br>
+            <textarea id="reason" name="reason" rows="4" cols="50" placeholder="Tell us a bit about the reason of applying"></textarea>
             </div><br>
 
              <button type="submit" class="btn btn-outline-success" name="submit">Submit</button>

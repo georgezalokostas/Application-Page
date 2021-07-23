@@ -1,8 +1,10 @@
 <?php
-include_once('dbconnect.php');
+include("dbconnect.php");
+include("functions.php");
 
-if(!isset($_SESSION["email"])){
-  header("location:index.php");
+if (!isset($_SESSION["email"]))
+{
+    header("location:index.php");
 }
 
 ?>
@@ -19,26 +21,46 @@ if(!isset($_SESSION["email"])){
         <ul>
          <li><a href="create_application.php">Submit request</a></li>
          <li><a href="logout.php">Logout</a></li>
-       <li><?php echo "User: " ,$_SESSION["email"] ?></li>
+       <li><?php echo "User: ", $_SESSION["email"] ?></li>
         </ul>
 
 
         <table class="table">
         <thead>
           <tr>
-            <th scope="col">id</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Email</th>
-            <th scope="col">Type</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Date submitted</th>
+            <th scope="col">Dates requested</th>
+            <th scope="col">Days requested</th>
+            <th scope="col">Status</th>
 
           </tr>
         </thead>
         <tbody>
 
+          <?php
+          $email = $_SESSION["email"];
+          $sql = "SELECT * FROM applications WHERE email='$email' ORDER BY datesubmitted DESC ";
+          $result = mysqli_query($data, $sql);
+          if ($result)
+          {
+              while ($row = mysqli_fetch_assoc($result))
+              {
+                  $datesubmitted = $row['datesubmitted'];
+                  $datefrom = $row['vacationstart'];
+                  $dateto = $row['vacationend'];
+                  $status = $row['status'];
+                  $datediff = dateDiffInDays($datefrom,$dateto);
+                  echo '<tr>
+                             <th scope="row">' . date('d-m-Y', strtotime($datesubmitted)) . '</th>
+                             <td>From: ' . date('d-m-Y', strtotime($datefrom)) . ' <br>To: ' . date('d-m-Y', strtotime($dateto)) . '</td>
+                             <td>' . $datediff . '</td>
+                             <td>' . $status . '</td>
+                            </tr>';
+              }
 
-        </tbody>
+          }
+?>
+          </tbody>
 
 </table>
 

@@ -9,17 +9,18 @@ if (!isset($_SESSION['email']))
 
 if (isset($_POST['submit']))
 {   #Format to Y-m-d, that's the format in the database!
+    $uniqid = uniqid();
     $datefrom = date('Y-m-d', strtotime($_POST['datefrom']));
     $dateto = date('Y-m-d', strtotime($_POST['dateto']));
     $datesubmitted = date('Y-m-d');
     $reason = $_POST['reason'];
     $email = $_SESSION['email'];
 
-    $sql = "INSERT INTO applications  (email,datesubmitted,vacationstart,vacationend,reason) VALUES ('$email','$datesubmitted','$datefrom','$dateto','$reason')";
+    $sql = "INSERT INTO applications  (email,datesubmitted,vacationstart,vacationend,reason,uniqid) VALUES ('$email','$datesubmitted','$datefrom','$dateto','$reason','$uniqid')";
     $result = mysqli_query($data, $sql);
     if ($result)
     {
-        sendEmail($email,$datefrom,$dateto,$reason);
+        sendEmail($email,$datefrom,$dateto,$reason,$uniqid);
         #header("location:user.php");
     }
     else
@@ -58,6 +59,8 @@ if (isset($_POST['submit']))
              <button type="submit" class="btn btn-outline-success" name="submit">Submit</button>
              <a class="btn btn-outline-danger" href="user.php" role="button">Return</a>
             </div><br>
+
+
 
       </form>
 

@@ -16,5 +16,5 @@ their name and their email. He can create a new employee or an admin through a f
 or he can update existing employees.
 
 # Technologies used:
-PHP 7.4.21
+PHP 7.4.21<br/>
 XAMPP v3.3.0 used for MySQL and Apache Web Server

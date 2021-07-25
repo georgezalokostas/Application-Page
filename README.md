@@ -14,3 +14,7 @@ and it gets refreshed on the user's list.
 When you're logged in as an admin, the admin can see a complete list of the employees,
 their name and their email. He can create a new employee or an admin through a form,
 or he can update existing employees.
+
+# Technologies used:
+PHP 7.4.21
+XAMPP v3.3.0 used for MySQL and Apache Web Server

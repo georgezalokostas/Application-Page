@@ -8,3 +8,6 @@ and then the information are stored within the portal.
 # Technologies used:
 PHP 7.4.21<br/>
 XAMPP v3.3.0 used for MySQL and Apache Web Server
+
+# Licence
+Application Page is licensed under the MIT License - see the [LICENSE](https://github.com/georgezalokostas/Application-Page/blob/main/LICENSE) file for details.

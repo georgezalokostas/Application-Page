@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $sql = "SELECT * FROM users WHERE
   email= '" . $email . "' AND password = '" . $password . "' ";
 
-    $result = mysqli_query($data, $sql);
+    $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($result);
     if($row){
     if ($row["usertype"] == "admin")

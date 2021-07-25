@@ -8,7 +8,7 @@ if (!isset($_SESSION['email']))
 }
 
 if (isset($_POST['submit']))
-{   #Format to Y-m-d, that's the format in the database!
+{ #Format to Y-m-d, that's the format in the database!
     $uniqid = uniqid();
     $datefrom = date('Y-m-d', strtotime($_POST['datefrom']));
     $dateto = date('Y-m-d', strtotime($_POST['dateto']));
@@ -16,16 +16,35 @@ if (isset($_POST['submit']))
     $reason = $_POST['reason'];
     $email = $_SESSION['email'];
 
-    $sql = "INSERT INTO applications  (email,datesubmitted,vacationstart,vacationend,reason,uniqid) VALUES ('$email','$datesubmitted','$datefrom','$dateto','$reason','$uniqid')";
-    $result = mysqli_query($data, $sql);
-    if ($result)
+    #empty textbox
+    if (empty($reason))
     {
-        sendEmail($email,$datefrom,$dateto,$reason,$uniqid);
-        #header("location:user.php");
+        echo ("Please state your reason");
+    }
+    # date from is not equal to past days or today
+    elseif (dateDiffInDays($datesubmitted, $datefrom) <= 0)
+    {
+        echo ("Please enter valid dates. You can't start from past days or today.");
+    }
+    # date to is greater than date from
+    elseif (dateDiffInDays($datefrom, $dateto) <= 0)
+    {
+        echo ("Date to can't start earlier than Date from.");
     }
     else
     {
-        die(mysqli_error($data));
+        $sql = "INSERT INTO applications  (email,datesubmitted,vacationstart,vacationend,reason,uniqid) VALUES ('$email','$datesubmitted','$datefrom','$dateto','$reason','$uniqid')";
+        $result = mysqli_query($data, $sql);
+        if ($result)
+        {
+            sendEmailToSupervisor($email, $datefrom, $dateto, $reason, $uniqid);
+            #header("location:user.php");
+
+        }
+        else
+        {
+            die(mysqli_error($data));
+        }
     }
 }
 ?>
@@ -40,6 +59,7 @@ if (isset($_POST['submit']))
 <body>
       <div class="container my-5">
           <h3> Choose your desired dates!</h3>
+          <h5> Date from field can't start from today. </h5><br>
           <form method="POST" action="create_application.php">
             <div class="form-group">
             <label>Date from</label>

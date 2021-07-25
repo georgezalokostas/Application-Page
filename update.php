@@ -23,11 +23,22 @@ if (isset($_POST['update']))
     $password2  = $_POST['password2'];
     $usertype = $_POST['usertype'];
 
-    if ($_POST['password']!= $_POST['password2'])
-     {
+    if ($password!= $password2){
          echo("Oops! Password did not match! Try again. ");
 
-     }else{
+     }
+     #blank fields
+     elseif(empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($password2))
+     {
+        echo ("Oops! Some fields were left blank.");
+     }
+     #email doesn't have @something.com
+     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+       echo ("Wrong email type");
+     }
+
+
+     else{
 
     $sql = " UPDATE users SET
     firstname='$firstname',

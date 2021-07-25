@@ -16,11 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $_SESSION["email"] = $email;
         $_SESSION["id"] = $id;
+        $_SESSION["logintype"] = 'ADMIN';
         header("location:admin.php");
     }
     elseif ($row["usertype"] == "user")
     {
         $_SESSION["email"] = $email;
+        $_SESSION["logintype"] = 'USER';
         header("location:user.php");
     }
 

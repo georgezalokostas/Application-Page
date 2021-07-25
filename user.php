@@ -1,11 +1,15 @@
 <?php
-include("dbconnect.php");
-include("functions.php");
+include('dbconnect.php');
+include('functions.php');
 
-if (!isset($_SESSION["email"]))
-{
-    header("location:index.php");
-}
+if(!isset($_SESSION['email']) ||!isset($_SESSION['logintype']) )
+    {
+       header("Location:index.php");
+    }
+    if ( $_SESSION['logintype'] != 'USER' ) {
+       header("Location:index.php");
+    }
+
 
 ?>
 

@@ -1,10 +1,18 @@
 <?php
-include ('dbconnect.php');
+include('dbconnect.php');
+include('functions.php');
 
-if (!isset($_SESSION['email']))
-{
-    header("location:index.php");
-}
+#if someone logs-in through the URL, he is redirected to the index page.
+if(!isset($_SESSION['email']) ||!isset($_SESSION['logintype']) )
+    {
+       header("Location:index.php");
+       echo "1";
+    }
+    if ( $_SESSION['logintype'] != 'ADMIN' ) {
+       header("Location:index.php");
+        echo "2";
+    }
+
 ?>
 
 <!DOCTYPE html>

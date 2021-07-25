@@ -44,7 +44,7 @@ if(!isset($_SESSION['email']) ||!isset($_SESSION['logintype']) )
           <?php
           $email = $_SESSION["email"];
           $sql = "SELECT * FROM applications WHERE email='$email' ORDER BY datesubmitted DESC ";
-          $result = mysqli_query($data, $sql);
+          $result = mysqli_query($con, $sql);
           if ($result)
           {
               while ($row = mysqli_fetch_assoc($result))

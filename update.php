@@ -48,14 +48,14 @@ if (isset($_POST['update']))
     usertype='$usertype'
     WHERE id= $id ";
 
-    $result = mysqli_query($data, $sql);
+    $result = mysqli_query($con, $sql);
     if ($result)
     {
         header("location:admin.php");
     }
     else
     {
-        die(mysqli_error($data));
+        die(mysqli_error($con));
     }
 }
 }

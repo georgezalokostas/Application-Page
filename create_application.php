@@ -34,7 +34,7 @@ if (isset($_POST['submit']))
     else
     {
         $sql = "INSERT INTO applications  (email,datesubmitted,vacationstart,vacationend,reason,uniqid) VALUES ('$email','$datesubmitted','$datefrom','$dateto','$reason','$uniqid')";
-        $result = mysqli_query($data, $sql);
+        $result = mysqli_query($con, $sql);
         if ($result)
         {
             sendEmailToSupervisor($email, $datefrom, $dateto, $reason, $uniqid);
@@ -43,7 +43,7 @@ if (isset($_POST['submit']))
         }
         else
         {
-            die(mysqli_error($data));
+            die(mysqli_error($con));
         }
     }
 }

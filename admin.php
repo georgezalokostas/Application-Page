@@ -47,7 +47,7 @@ if(!isset($_SESSION['email']) ||!isset($_SESSION['logintype']) )
 
           <?php
 $sql = "SELECT * FROM users";
-$result = mysqli_query($data, $sql);
+$result = mysqli_query($con, $sql);
 if ($result)
 {
 

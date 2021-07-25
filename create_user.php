@@ -35,12 +35,12 @@ if(isset($_POST['submit'])){
    else{
      $sql="INSERT INTO users  (firstname,lastname,email,password,usertype) VALUES ('$firstname','$lastname','$email','$password','$usertype')";
 
-     $result = mysqli_query($data,$sql);
+     $result = mysqli_query($con,$sql);
      if($result){
        header("location:admin.php");
 
      }else{
-         die(mysqli_error($data));
+         die(mysqli_error($con));
      }
    }
 

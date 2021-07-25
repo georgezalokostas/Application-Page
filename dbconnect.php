@@ -6,7 +6,7 @@ $user = "root";
 $password = "";
 $db= "posts";
 
-$data = mysqli_connect($host,$user,$password,$db);
-if (!$data){
-  die(mysql_error($data));
+$con = mysqli_connect($host,$user,$password,$db);
+if (!$con){
+  die(mysql_error($con));
 }

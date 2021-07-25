@@ -4,7 +4,7 @@ include ("dbconnect.php");
 #Get id from url, and prepopulate the cells
 $id = $_GET['updateid'];
 $query = "SELECT * FROM users WHERE id=$id";
-$result = mysqli_query($data, $query);
+$result = mysqli_query($con, $query);
 $row = mysqli_fetch_assoc($result);
 $firstname = $row['firstname'];
 $lastname = $row['lastname'];
